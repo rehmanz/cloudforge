@@ -1,0 +1,26 @@
+name: CloudForge Project Setup
+on: [push]
+jobs:
+  build_project:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - uses: actions/setup-python@v1
+        with:
+          python-version: 3.12
+      - name: Setup poetry environment
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          poetry install
+      - name: Run pre-commit checks
+        run: |
+          poetry run pre-commit run --all-files
+      - name: Verify AWS account setup
+        run: |
+          aws sts get-caller-identity
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

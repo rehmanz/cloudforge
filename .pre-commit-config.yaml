@@ -1,0 +1,23 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.1.0
+  hooks:
+    - id: trailing-whitespace
+      stages: [commit]
+    - id: end-of-file-fixer
+      exclude: .diff
+      stages: [commit]
+    - id: check-merge-conflict
+      stages: [commit]
+    - id: detect-private-key
+      stages: [commit]
+    - id: check-added-large-files
+      stages: [commit]
+    - id: check-case-conflict
+      stages: [commit]
+
+- repo: https://github.com/gruntwork-io/pre-commit
+  rev: v0.1.17
+  hooks:
+    - id: terraform-fmt
+    - id: terraform-validate
