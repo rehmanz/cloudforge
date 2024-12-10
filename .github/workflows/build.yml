@@ -18,6 +18,9 @@ jobs:
       - name: Run pre-commit checks
         run: |
           poetry run pre-commit run --all-files
+      - name: Setup terragrunt and terraform
+        run: |
+          scripts/./install_infra_tools.sh
       - name: Verify AWS account setup
         run: |
           aws sts get-caller-identity
