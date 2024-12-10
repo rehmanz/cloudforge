@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "cloudforge"
+version = "0.1.0"
+description = "A robust infrastructure leveraging Terragrunt, microservices and service mesh to streamline cloud-native application delivery"
+authors = ["Zile Rehman <rehmanz@yahoo.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+boto3 = "^1.35.77"
+pre-commit = "^4.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
