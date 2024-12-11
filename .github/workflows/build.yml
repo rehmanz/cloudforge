@@ -29,11 +29,12 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      - name: Run infra plan
+      - name: Run infra deploy
         run: |
-          pushd infra/live/dev/vpc
-          terragrunt plan
-          terragrunt apply -auto-approve
+          pushd infra/live/dev
+          terragrunt run-all init --terragrunt-non-interactive
+          terragrunt run-all plan --terragrunt-non-interactive
+          terragrunt run-all apply --terragrunt-non-interactive
           popd
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
