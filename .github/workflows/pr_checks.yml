@@ -1,5 +1,8 @@
 name: Pull Request Checks
-on: [push]
+on:
+  push:
+    branches-ignore:
+      - main
 jobs:
   pr_checks:
     runs-on: ubuntu-latest
@@ -24,7 +27,6 @@ jobs:
       - name: Run infra plan
         run: |
           pushd infra/live/dev/vpc
-          terragrunt init
           terragrunt plan
           popd
         env:
