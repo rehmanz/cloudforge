@@ -1,10 +1,7 @@
-name: CloudForge Project Setup
-on:
-  push:
-    branches:
-      - main
+name: Pull Request Checks
+on: [push]
 jobs:
-  build_infra:
+  pr_checks:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -24,18 +21,11 @@ jobs:
       - name: Run pre-commit checks
         run: |
           poetry run pre-commit run --all-files
-      - name: Verify AWS account setup
-        run: |
-          aws sts get-caller-identity
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Run infra plan
         run: |
           pushd infra/live/dev/vpc
           terragrunt init
           terragrunt plan
-          terragrunt apply -auto-approve
           popd
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
