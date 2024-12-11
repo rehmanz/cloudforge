@@ -7,7 +7,6 @@ jobs:
   build_infra:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -33,7 +32,6 @@ jobs:
       - name: Run infra plan
         run: |
           pushd infra/live/dev/vpc
-          terragrunt init
           terragrunt plan
           terragrunt apply -auto-approve
           popd
