@@ -20,7 +20,7 @@ inputs = {
 
   node_groups = {
     general = {
-      capacity_type  = "ON_DEMAND"
+      capacity_type  = "SPOT"
       instance_types = ["t3a.xlarge"]
       scaling_config = {
         desired_size = 1
