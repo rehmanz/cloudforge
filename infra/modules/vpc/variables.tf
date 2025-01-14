@@ -33,3 +33,9 @@ variable "public_subnet_tags" {
   description = "Private subnet tags."
   type        = map(any)
 }
+
+variable "dynamodb_table_name" {
+  description = "Dynamo DB table name."
+  type        = string
+  default     = "cf-environments-mapping"
+}
