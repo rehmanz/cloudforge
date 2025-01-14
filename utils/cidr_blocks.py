@@ -1,16 +1,11 @@
-import asyncio
 import json
 import logging
 import sys
-from pathlib import Path
 from typing import Dict, List
 
 import boto3
 
 logger = logging.getLogger(__name__)
-
-# CF_SRC_ROOT = str(Path(__file__).parent.resolve().parent.parent.parent)
-# DEPLOYMENTS_PATH = f"{CF_SRC_ROOT}/devops/environment_setups/terraform/deployments"
 
 
 class GetAvailableCIDRs:
