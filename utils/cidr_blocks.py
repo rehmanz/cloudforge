@@ -42,7 +42,7 @@ class GetAvailableCIDRs:
             raise Exception(f"GetAvailableCIDRs Unable to return available CIDRs: {str(e)}")
 
     def __prepare_available_cidrs(self):
-        for i in range(0, 99):
+        for i in range(0, 150):
             if i in self._reserved_octets or i + 100 in self._reserved_octets:
                 continue
             if not self._available_app_cidr and not self._available_data_cidr:
