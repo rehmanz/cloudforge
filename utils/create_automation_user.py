@@ -92,7 +92,7 @@ class SesMailSender:
         :param reply_tos: Reply to email address
         """
         try:
-            subject = "Hosted Backend Environment Credentials"
+            subject = "Cloudforge Environment Credentials"
             send_args = {
                 "Source": self.source,
                 "Destination": self.destination.to_service_format(),
@@ -546,10 +546,6 @@ if __name__ == "__main__":
     share_creds = args.share_creds
 
     try:
-        Sudni_enum = Enum(
-            "CloudforgeGroupAndPolicies",
-            ["GROUP_NAME", "GROUP_POLICIES", "USER_POLICIES"],
-        )
         group_name = CloudforgeGroupAndPolicies.GROUP_NAME.value
         group_policies = CloudforgeGroupAndPolicies.GROUP_POLICIES.value
         user_policies = CloudforgeGroupAndPolicies.USER_POLICIES.value
@@ -577,7 +573,7 @@ if __name__ == "__main__":
             )
             raise Exception(error_msg)
 
-        # Create sudni user and group
+        # Create the user and group
         logger.info('Creating the "{}" user'.format(username))
         user = IAMUser(name=username)
         user.create()
